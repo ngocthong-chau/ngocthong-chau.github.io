@@ -111,7 +111,7 @@ img{max-width:100%;display:block;}
 section{padding:56px 0;}
 .section-eyebrow{
   font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-deep);
-  font-weight:700;margin:0 0 14px;
+  font-weight:700;margin:14px 0 14px;
 }
 
 /* reveal-on-scroll */
@@ -124,7 +124,7 @@ section{padding:56px 0;}
 /* ================= BIO ================= */
 .bio-card{
   background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);
-  padding:28px 30px;box-shadow:0 6px 20px var(--shadow);
+  padding:28px 30px;box-shadow:0 6px 20px var(--shadow);margin:14px 0 14px;
   display:flex;gap:20px;align-items:flex-start;
 }
 .bio-card svg{flex:0 0 auto;width:34px;height:34px;color:var(--amber);}
@@ -162,7 +162,7 @@ section{padding:56px 0;}
 /* ================= CV CALLOUT ================= */
 .cv-banner{
   background:linear-gradient(120deg,var(--teal),var(--teal-deep));
-  border-radius:24px;padding:40px 36px;color:#fff;text-align:center;
+  border-radius:24px;padding:40px 36px;color:#fff;text-align:center;margin:14px 0 14px;
   box-shadow:0 16px 36px rgba(11,93,92,.28);
 }
 .cv-banner h2{margin:0 0 10px;font-size:26px;}
