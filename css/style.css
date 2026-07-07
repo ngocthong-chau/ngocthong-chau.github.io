@@ -178,3 +178,23 @@ footer.site-footer .foot-links{display:flex;justify-content:center;gap:20px;marg
 footer.site-footer a{text-decoration:none;color:var(--muted);font-size:13.5px;}
 footer.site-footer a:hover{color:var(--teal);}
 footer.site-footer .foot-note{font-size:11.5px;color:var(--muted);}
+
+/* ================= TOOLTIP (acronym glossary) ================= */
+[data-tip]{position:relative;}
+[data-tip]::after{
+  content:attr(data-tip);
+  position:absolute;left:50%;bottom:calc(100% + 9px);transform:translateX(-50%) translateY(4px);
+  background:var(--ink);color:var(--bg-card);
+  font-family:var(--font);font-size:13.5px;font-weight:500;line-height:1.4;
+  padding:9px 12px;border-radius:9px;width:max-content;max-width:230px;text-align:left;
+  box-shadow:0 8px 20px rgba(0,0,0,.28);
+  opacity:0;pointer-events:none;transition:opacity .15s ease, transform .15s ease;z-index:20;
+}
+[data-tip]::before{
+  content:"";position:absolute;left:50%;bottom:calc(100% + 4px);transform:translateX(-50%);
+  border:5px solid transparent;border-top-color:var(--ink);
+  opacity:0;transition:opacity .15s ease;pointer-events:none;z-index:20;
+}
+[data-tip]:hover::after,[data-tip]:focus-visible::after,
+[data-tip]:hover::before,[data-tip]:focus-visible::before{opacity:1;transform:translateX(-50%) translateY(0);}
+.acr{cursor:help;}

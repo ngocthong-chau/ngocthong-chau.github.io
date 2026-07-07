@@ -202,9 +202,11 @@ h1.name{
 }
 .coverage-tags .grp b{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin-right:2px;}
 .coverage-tags .chip{font-size:13px;background:var(--warm-1);color:var(--warm-deep);font-weight:600;padding:5px 11px;border-radius:999px;white-space:nowrap;}
+.coverage-tags .chip[data-tip]{cursor:help;}
 
-/* ---- tooltip (shared: dials + credentials) ---- */
+/* ---- tooltip (shared: dials + credentials + chips + inline acronyms) ---- */
 [data-tip]{position:relative;}
+.acr{cursor:help;}
 [data-tip]::after{
   content:attr(data-tip);
   position:absolute;left:50%;bottom:calc(100% + 9px);transform:translateX(-50%) translateY(4px);
