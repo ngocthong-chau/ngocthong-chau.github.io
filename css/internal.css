@@ -182,6 +182,21 @@ h1.name{
 .flip-list li{font-size:14.5px;margin-bottom:6px;}
 .flip-list li:last-child{margin-bottom:0;}
 
+/* ---- flip discoverability hints ("click for details") ---- */
+.flip-hint{
+  display:flex;align-items:center;gap:7px;
+  font-family:var(--font-mono);font-size:13px;color:var(--ink-soft);
+  margin:-10px 0 16px;
+}
+.flip-hint svg{width:14px;height:14px;flex:0 0 auto;color:var(--warm-deep);}
+.t-card.flip-card,.proj-card.flip-card{padding-bottom:8px;}
+.flip-hint-badge{
+  display:flex;justify-content:flex-end;align-items:center;gap:4px;
+  margin-top:4px;padding-top:8px;border-top:1px dashed var(--bronze-1);
+  font-family:var(--font-mono);font-size:10.5px;font-weight:700;color:var(--warm-deep);
+}
+.flip-hint-badge svg{width:10px;height:10px;flex:0 0 auto;}
+
 /* ================= OTHER PROJECTS (accordion, no flip) ================= */
 .other-projects{
   background:var(--bronze-0);border:1px solid var(--bronze-1);border-radius:12px;
@@ -383,4 +398,7 @@ footer{text-align:center;font-family:var(--font-mono);font-size:12px;letter-spac
 
   /* other-projects accordion: stays collapsed in print too (keeps the printed CV short) */
   .other-projects > summary::before,.other-proj-row > summary::before{display:none;}
+
+  /* click affordance hints are meaningless on paper */
+  .flip-hint,.flip-hint-badge{display:none;}
 }
