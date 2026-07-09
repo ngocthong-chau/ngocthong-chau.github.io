@@ -148,13 +148,72 @@ h1.name{
 .metric{color:var(--warm-deep);font-weight:700;}
 
 /* ================= PROJECTS ================= */
-.projects{display:grid;gap:14px;margin-bottom:52px;}
+.projects{display:grid;gap:14px;margin-bottom:14px;}
 .proj-card{background:var(--bronze-0);border:1px solid var(--bronze-1);border-left:4px solid var(--glow);border-radius:12px;padding:16px 20px;}
 .proj-title{font-size:17px;font-weight:700;margin:0 0 2px;}
 .proj-meta{font-family:var(--font-mono);font-size:13px;color:var(--ink-soft);margin-bottom:8px;display:block;}
 .proj-card ul{margin:0;padding-left:18px;}
 .proj-card li{font-size:15.5px;margin-bottom:5px;}
 .proj-card li:last-child{margin-bottom:0;}
+
+/* ================= FLIP CARDS (Experience + Key Projects) ================= */
+.flip-card{cursor:pointer;perspective:1600px;-webkit-tap-highlight-color:transparent;}
+.flip-card:focus-visible{outline:2px solid var(--glow);outline-offset:3px;}
+.flip-inner{
+  position:relative;width:100%;
+  transform-style:preserve-3d;
+  transition:transform .5s cubic-bezier(.4,.2,.2,1), height .3s ease;
+}
+.flip-card.is-flipped .flip-inner{transform:rotateY(180deg);}
+.flip-front,.flip-back{
+  width:100%;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
+}
+.flip-back{position:absolute;top:0;left:0;transform:rotateY(180deg);}
+.flip-card:not(.is-flipped) .flip-back{pointer-events:none;}
+.flip-card.is-flipped .flip-front{pointer-events:none;}
+.flip-back-label{
+  display:block;font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.07em;
+  color:var(--warm-deep);margin-bottom:10px;
+}
+.flip-sub{display:block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin:10px 0 4px;}
+.flip-sub:first-of-type{margin-top:0;}
+.flip-list{margin:0;padding-left:18px;max-height:280px;overflow-y:auto;}
+.flip-list li{font-size:14.5px;margin-bottom:6px;}
+.flip-list li:last-child{margin-bottom:0;}
+
+/* ================= OTHER PROJECTS (accordion, no flip) ================= */
+.other-projects{
+  background:var(--bronze-0);border:1px solid var(--bronze-1);border-radius:12px;
+  padding:0 20px;margin-bottom:52px;
+}
+.other-projects > summary{
+  list-style:none;cursor:pointer;
+  display:flex;align-items:center;gap:9px;
+  padding:14px 0;
+  font-family:var(--font-mono);font-size:13.5px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.06em;color:var(--warm-deep);
+}
+.other-projects > summary::-webkit-details-marker{display:none;}
+.other-projects > summary::before{
+  content:"";flex:0 0 auto;
+  border-left:5px solid var(--warm-deep);border-top:4px solid transparent;border-bottom:4px solid transparent;
+  transition:transform .2s ease;
+}
+.other-projects[open] > summary::before{transform:rotate(90deg);}
+.other-count{color:var(--ink-soft);font-weight:500;text-transform:none;letter-spacing:0;}
+.other-proj-list{padding-top:2px;padding-bottom:16px;border-top:1px solid var(--bronze-1);}
+.other-proj-row{border-bottom:1px solid var(--bronze-1);}
+.other-proj-row:last-child{border-bottom:none;}
+.other-proj-row > summary{
+  list-style:none;cursor:pointer;
+  display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 14px;
+  padding:12px 2px;
+}
+.other-proj-row > summary::-webkit-details-marker{display:none;}
+.op-title{font-size:15px;font-weight:700;color:var(--ink);}
+.op-meta{font-family:var(--font-mono);font-size:12.5px;color:var(--ink-soft);white-space:nowrap;}
+.op-body{padding:0 2px 14px;}
 
 /* ================= COVERAGE (skills as hexagon tiles, fixed 2 rows) ================= */
 .coverage{margin-bottom:52px;}
@@ -302,6 +361,8 @@ footer{text-align:center;font-family:var(--font-mono);font-size:12px;letter-spac
   .bars{height:26px;}
   .dispatch{grid-template-columns:1fr;}
   .press-articles{grid-template-columns:1fr;}
+  .flip-list{max-height:220px;}
+  .other-proj-row > summary{flex-direction:column;align-items:flex-start;gap:2px;}
 }
 
 @media print{
@@ -312,4 +373,14 @@ footer{text-align:center;font-family:var(--font-mono);font-size:12px;letter-spac
   .press-badge{position:static;display:inline-block;margin-bottom:8px;}
   [data-tip]::after,[data-tip]::before{display:none;}
   *{animation:none !important;transition:none !important;}
+
+  /* flip cards: print front + back stacked and static, no 3D transform */
+  .flip-card{cursor:default;}
+  .flip-inner{transform:none !important;height:auto !important;}
+  .flip-front,.flip-back{position:static;backface-visibility:visible;transform:none;pointer-events:auto;}
+  .flip-back{margin-top:10px;padding-top:10px;border-top:1px dashed var(--bronze-1);}
+  .flip-list{max-height:none;overflow:visible;}
+
+  /* other-projects accordion: stays collapsed in print too (keeps the printed CV short) */
+  .other-projects > summary::before,.other-proj-row > summary::before{display:none;}
 }
